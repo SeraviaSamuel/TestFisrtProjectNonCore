@@ -1,0 +1,32 @@
+﻿@model IEnumerable<TestFisrtProjectNonCore.Models.Book>
+
+<h2 class="my-5">Books in Selected Category</h2>
+
+@if (Model.Any())
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Description</th>
+                <th>Added On</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in Model)
+            {
+                <tr>
+                    <td>@book.Title</td>
+                    <td>@book.Auther</td>
+                    <td>@book.Description</td>
+                    <td>@book.AddedOn.ToShortDateString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No books found for this category 😢.</p>
+}

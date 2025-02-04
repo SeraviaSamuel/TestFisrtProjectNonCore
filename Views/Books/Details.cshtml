@@ -1,0 +1,14 @@
+﻿@model TestFisrtProjectNonCore.Models.Book
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title w-auto">@Model.Title</h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary">@Model.Category.Name</h6>
+        <p class="card-text">@Model.Description</p>
+        <a href="/Books/Index" class="card-link text-dark">All Books</a>
+    </div>
+</div>

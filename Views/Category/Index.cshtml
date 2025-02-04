@@ -1,0 +1,31 @@
+﻿@model List<TestFisrtProjectNonCore.Models.Category>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Category</h2>
+
+<hr />
+
+<select id="categoryDropdown" class="form-select">
+    <option value="">Select a Category</option>
+    @foreach (var cat in Model)
+    {
+        <option value="@cat.Id">@cat.Name</option>
+    }
+</select>
+
+<div id="booksList"></div>
+
+<script>
+    document.getElementById("categoryDropdown").addEventListener("change", function () {
+        var categoryId = this.value;
+        if (categoryId) {
+            fetch("/Category/BooksByCategory?categoryId=" + categoryId)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("booksList").innerHTML = data;
+                });
+        }
+    });
+</script>

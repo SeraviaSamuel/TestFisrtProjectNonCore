@@ -1,0 +1,72 @@
+﻿@model TestFisrtProjectNonCore.View_Models.BookViewModel
+@{
+    ViewBag.Title = "Create";
+}
+
+<h3 class="text-dark">
+    @if (Model.Id == 0)
+    {
+        @:Add New Book
+    }
+    else
+    {
+        @:Edit Book
+    }
+</h3>
+
+<hr />
+@using (Html.BeginForm("Save", "Books"))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(b => b.Id)
+
+    <div class="row mb-3">
+        <div class="col-md-4">
+            @Html.LabelFor(b => b.Title, new { @class = "col-form-label" })
+        </div>
+        <div class="col-md-8">
+            @Html.TextBoxFor(b => b.Title, new { @class = "form-control" })
+            @Html.ValidationMessageFor(b => b.Title, null, new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-4">
+            @Html.LabelFor(b => b.Auther, new { @class = "col-form-label" })
+        </div>
+        <div class="col-md-8">
+            @Html.TextBoxFor(b => b.Auther, new { @class = "form-control" })
+            @Html.ValidationMessageFor(b => b.Auther, null, new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-4">
+            @Html.LabelFor(b => b.CategoryId, new { @class = "col-form-label" })
+        </div>
+        <div class="col-md-8">
+            @Html.DropDownListFor(b => b.CategoryId, new SelectList(Model.Categories, "Id", "Name"), "Select Category", new { @class = "form-select" })
+            @Html.ValidationMessageFor(b => b.CategoryId, null, new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-4">
+            @Html.LabelFor(b => b.Description, new { @class = "col-form-label" })
+        </div>
+        <div class="col-md-8">
+            @Html.TextAreaFor(b => b.Description, new { @class = "form-control" })
+            @Html.ValidationMessageFor(b => b.Description, null, new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-dark">Save</button>
+    </div>
+
+}
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
